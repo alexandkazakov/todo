@@ -95,11 +95,11 @@
 
         if (tasks.length) {
             tasks.forEach(function(task) {
-                let items = createAppItem(task);
-                todoAppList.append(items.item);
+                let todoAppItem = createAppItem(task);
+                todoAppList.append(todoAppItem.item);
 
-                items.doneBtn.addEventListener('click', function() {
-                    items.item.classList.toggle('list-group-item-success');
+                todoAppItem.doneBtn.addEventListener('click', function() {
+                    todoAppItem.item.classList.toggle('list-group-item-success');
                     if (task.done === false) {
                         task.done = true;
                     } else {
@@ -107,9 +107,9 @@
                     };
                     localStorage.setItem(listName, JSON.stringify(tasks));
                 });
-                items.removeBtn.addEventListener('click', function() {
+                todoAppItem.removeBtn.addEventListener('click', function() {
                     if (confirm('Вы уверены?')) {
-                        items.item.remove();
+                        todoAppItem.item.remove();
                         tasks.splice(tasks.indexOf(task), 1);
                         localStorage.setItem(listName, JSON.stringify(tasks));
                     }
