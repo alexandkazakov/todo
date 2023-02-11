@@ -1,15 +1,15 @@
 (function() {
     function createAppTitle(title) {
-        let appTitle = document.createElement('h2');
+        const appTitle = document.createElement('h2');
         appTitle.innerHTML = title;
         return appTitle;
     }
 
     function createAppItemForm() {
-        let form = document.createElement('form');
-        let input = document.createElement('input');
-        let buttonWrap = document.createElement('div');
-        let button = document.createElement('button');
+        const form = document.createElement('form');
+        const input = document.createElement('input');
+        const buttonWrap = document.createElement('div');
+        const button = document.createElement('button');
 
         form.classList.add('input-group', 'mb-3');
         input.classList.add('form-control');
@@ -39,16 +39,16 @@
     }
 
     function createAppList() {
-        let list = document.createElement('ul');
+        const list = document.createElement('ul');
         list.classList.add('list-group');
         return list;
     }
 
     function createAppItem(obj) {
-        let item = document.createElement('li');
-        let btnGroup = document.createElement('div');
-        let doneBtn = document.createElement('button');
-        let removeBtn = document.createElement('button');
+        const item = document.createElement('li');
+        const btnGroup = document.createElement('div');
+        const doneBtn = document.createElement('button');
+        const removeBtn = document.createElement('button');
 
         item.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
         item.textContent = obj.name;
@@ -76,7 +76,7 @@
 
     function createId(arr) {
         if (arr.length > 0) {
-            let maxIdItem = arr.reduce((max, current) => max.id > current.id ? max : current);
+            const maxIdItem = arr.reduce((max, current) => max.id > current.id ? max : current);
             return maxIdItem.id + 1;
         } else {
             return 1;
@@ -84,10 +84,10 @@
     }
 
     function createTodoApp(container, title = 'Список дел', listName) {
-        let todoAppTitle = createAppTitle(title);
-        let todoAppItemForm = createAppItemForm();
-        let todoAppList = createAppList();
-        let tasks = JSON.parse(localStorage.getItem(listName)) || [];
+        const todoAppTitle = createAppTitle(title);
+        const todoAppItemForm = createAppItemForm();
+        const todoAppList = createAppList();
+        const tasks = JSON.parse(localStorage.getItem(listName)) || [];
         
         container.append(todoAppTitle);
         container.append(todoAppItemForm.form);
@@ -95,7 +95,7 @@
 
         if (tasks.length) {
             tasks.forEach(function(task) {
-                let todoAppItem = createAppItem(task);
+                const todoAppItem = createAppItem(task);
                 todoAppList.append(todoAppItem.item);
 
                 todoAppItem.doneBtn.addEventListener('click', function() {
@@ -125,7 +125,7 @@
                 return;
             }
 
-            let task = {
+            const task = {
                 id: createId(tasks),
                 name: todoAppItemForm.input.value,
                 done: false,
@@ -134,7 +134,7 @@
 
             tasks.push(task);
 
-            let todoAppItem = createAppItem(task);
+            const todoAppItem = createAppItem(task);
 
             todoAppItem.doneBtn.addEventListener('click', function() {
                 todoAppItem.item.classList.toggle('list-group-item-success');
